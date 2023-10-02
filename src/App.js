@@ -4,7 +4,7 @@ import Landing from './Landing';
 
 const App = () => {
   return (
-    <div style={{backgroundColor:"black"}}>
+    <div style={{backgroundColor:"black",backgroundSize:"100%"}}>
       <Landing />
     </div>
   );

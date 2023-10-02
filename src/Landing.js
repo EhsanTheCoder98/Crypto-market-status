@@ -7,6 +7,7 @@ import Loading from "./gif/loading.webp"
 const Landing = () => {
 
     const [coins,setCoins] = useState([]);
+    const [search,setSearch] = useState("");
 
     useEffect(()=>{
         const fetchAPI = async() =>{
@@ -18,16 +19,22 @@ const Landing = () => {
         fetchAPI();
     },[])
 
+    const searchHandler = (event) => {
+        setSearch(event.target.value)
+    }
+
+    const searched = coins.filter(item => item.name.toLowerCase().includes(search.toLowerCase()));
+
     return (
         <div className={styles.container}>
-            <input type='text' placeholder='Search'/>
+            <input type='text' placeholder='Search' value={search} onChange={searchHandler} />
             {coins.length ?
             <div>
                     {
-                     coins.map(item=><EachCoin key={item.id} image={item.image} price={item.current_price} name={item.name} symbol={item.symbol} marketCap={item.market_cap} priceChange={item.price_change_percentage_24h}/>)
+                     searched.map(item=><EachCoin key={item.id} image={item.image} price={item.current_price} name={item.name} symbol={item.symbol} marketCap={item.market_cap} priceChange={item.price_change_percentage_24h}/>)
                     }
             </div>:
-             <img src={Loading} style={{width:"100%",height:"100%"}}/>
+             <img src={Loading} style={{width:"100%",height:"100%"}} alt='loading'/>
             }
         </div>
     );

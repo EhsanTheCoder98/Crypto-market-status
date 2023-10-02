@@ -22,3 +22,12 @@
 .container img {
     width: 60px;
 }
+
+.red {
+    color: red;
+    font-size: 1.1rem;
+}
+.green {
+    color: rgb(43, 180, 43);
+    font-size: 1.1rem;
+}
